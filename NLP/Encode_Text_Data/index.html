@@ -129,10 +129,11 @@ but may not contain as much “informational content” to the model as rarer bu
 where ft,d is the raw count of a term in a document, i.e., the number of times that term t occurs in document d. </p>
 <p>Inverse Document Frequency: is a scoring of how rare the word is across documents.
 <img alt="image" src="https://user-images.githubusercontent.com/40142772/140699413-32896b0a-26b4-41b4-a468-5cc87a84ff90.png" />
-N: total number of documents in the corpus $${\displaystyle N={|D|}}N = {|D|}
-{\displaystyle |{d\in D:t\in d}|} |{d \in D: t \in d}| : number of documents where the term {\displaystyle t}t appears
+N: total number of documents in the corpus <script type="math/tex; mode=display">{\displaystyle N={|D|}}N = {|D|}
+{\displaystyle |\{d\in D:t\in d\}|} |\{d \in D: t \in d\}| : number of documents where the term {\displaystyle t}t appears
 (i.e., {\displaystyle \mathrm {tf} (t,d)\neq 0} \mathrm{tf}(t,d) \neq 0). If the term is not in the corpus, this will lead to a division-by-zero.
-It is therefore common to adjust the denominator to {\displaystyle 1+|{d\in D:t\in d}|}1 + |{d \in D: t \in d}|.$$</p>
+It is therefore common to adjust the denominator to {\displaystyle 1+|\{d\in D:t\in d\}|}1 + |\{d \in D: t \in d\}|.</script>
+</p>
 <p>Then tf–idf is calculated as
 <img alt="image" src="https://user-images.githubusercontent.com/40142772/140699512-c34fb166-1bd4-47bc-9d4c-949596194216.png" /></p>
 <p>Example - </p>
@@ -151,6 +152,7 @@ It is therefore common to adjust the denominator to {\displaystyle 1+|{d\in D:t\
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../js/base.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
         <script src="../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
