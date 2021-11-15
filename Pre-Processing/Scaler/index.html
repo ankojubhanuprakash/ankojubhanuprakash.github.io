@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://ankojubhanuprakash.github.io/NLP/Encode_Text_Data/">
+        <link rel="canonical" href="https://ankojubhanuprakash.github.io/Pre-Processing/Scaler/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Encode Text Data - Docs</title>
+        <title>Scaling - Docs</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -36,21 +36,21 @@
                             <li class="navitem">
                                 <a href="../.." class="nav-link">Welcome to MkDocs</a>
                             </li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">NLP <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="./" class="dropdown-item active">Encode Text Data</a>
+    <a href="../../NLP/Encode_Text_Data/" class="dropdown-item">Encode Text Data</a>
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pre Processing <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../Pre-Processing/Scaler/" class="dropdown-item">Scaling</a>
+    <a href="./" class="dropdown-item active">Scaling</a>
 </li>
                                 </ul>
                             </li>
@@ -63,12 +63,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../.." class="nav-link">
+                                <a rel="prev" href="../../NLP/Encode_Text_Data/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../Pre-Processing/Scaler/" class="nav-link">
+                                <a rel="next" class="nav-link disabled">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -90,13 +90,21 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#encode-text-data" class="nav-link">Encode Text Data</a>
+            <li class="nav-item" data-level="1"><a href="#scaling" class="nav-link">Scaling</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#bag-of-words" class="nav-link">Bag of Words</a>
+            <li class="nav-item" data-level="2"><a href="#standardscaler" class="nav-link">StandardScaler</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#tf-idf" class="nav-link">TF-IDF</a>
+            <li class="nav-item" data-level="2"><a href="#minmaxscaler" class="nav-link">MinMaxScaler</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#maxabsscaler" class="nav-link">MaxAbsScaler</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#robustscaler" class="nav-link">RobustScaler</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -107,48 +115,46 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="encode-text-data">Encode Text Data</h1>
-<h2 id="bag-of-words">Bag of Words</h2>
-<p>Bag of words is method to represent raw text data in a strucutred format to a machine learning model. 
-Bag of words method constructs Vocabulary from the given corpus, and represents the text data as a vecotor of size of 
-the constructed vocabulary, with a number indicating the count of occurence of a word, that appeared in the sentecne.</p>
-<p>Example - 
-1. "John likes to watch movies. Mary likes movies too."
-2. "Mary also likes to watch football games."</p>
-<p>Vocabulary - 
-"John","likes","to","watch","movies","Mary", "too", "also","football","games"</p>
-<p>Representation - </p>
-<ol>
-<li>"John likes to watch movies. Mary likes movies too." is represented as [1, 2, 1, 1, 2, 1, 1, 0, 0, 0]</li>
-<li>"Mary also likes to watch football games." is represented as [0, 1, 1, 1, 0, 1, 0, 1, 1, 1]</li>
-</ol>
-<p>Limitation - 
-1. As the vocabulary size increases, the lenght of vecotr increases, leading to increase in computational cost.
-2. Context of the sentence is not captured, by ignoreing the word order</p>
-<p>Implementation - </p>
-<h2 id="tf-idf">TF-IDF</h2>
-<p>In bag of Words, we have seen that elements in the vecotr represents the number of times the word appeared in the sentence.
-Instead of count, TF-IDF is alternative way to construct vectors that yields better results.</p>
-<p>"A problem with scoring word frequency is that highly frequent words start to dominate in the document (e.g. larger score),
-but may not contain as much “informational content” to the model as rarer but perhaps domain specific words."
-(https://machinelearningmastery.com/gentle-introduction-bag-words-model/)</p>
-<p>Definition - </p>
-<p>Term Frequency: is a scoring of the frequency of the word in the current document.
-<img alt="image" src="https://user-images.githubusercontent.com/40142772/140699303-b3169b23-e220-42b3-9124-0ae096dab76f.png" />
-where ft,d is the raw count of a term in a document, i.e., the number of times that term t occurs in document d. </p>
-<p>Inverse Document Frequency: is a scoring of how rare the word is across documents.
-<img alt="image" src="https://user-images.githubusercontent.com/40142772/140699413-32896b0a-26b4-41b4-a468-5cc87a84ff90.png" />
-N: total number of documents in the corpus <script type="math/tex; mode=display">{\displaystyle N={|D|}}N = {|D|}
-{\displaystyle |\{d\in D:t\in d\}|} |\{d \in D: t \in d\}| : number of documents where the term {\displaystyle t}t appears
-(i.e., {\displaystyle \mathrm {tf} (t,d)\neq 0} \mathrm{tf}(t,d) \neq 0). If the term is not in the corpus, this will lead to a division-by-zero.
-It is therefore common to adjust the denominator to {\displaystyle 1+|\{d\in D:t\in d\}|}1 + |\{d \in D: t \in d\}|.</script>
-</p>
-<p>Then tf–idf is calculated as
-<img alt="image" src="https://user-images.githubusercontent.com/40142772/140699512-c34fb166-1bd4-47bc-9d4c-949596194216.png" /></p>
-<p>Example - </p>
-<p>References - 
- 1. https://en.wikipedia.org/wiki/Bag-of-words_model
- 2. https://machinelearningmastery.com/gentle-introduction-bag-words-model/</p></div>
+<h1 id="scaling">Scaling</h1>
+<h2 id="standardscaler">StandardScaler</h2>
+<p><code>import pandas as pd</code>  <br />
+<code>from sklearn.preprocessing import StandardScaler</code> <br />
+<code>scaler=StandardScaler()</code>     <br />
+<code>data = [i for i in range(1,31)]</code>        <br />
+<code>data.reshape(-1,2)</code>               <br />
+<code>x=pd.DataFrame(data)</code>          <br />
+<img alt="Dataframe" src="../image1.JPG" /> <br />
+<code>scaler.fit_transform(data)</code>  <br />
+<img alt="Normalised" src="../Normalised.JPG" /></p>
+<h2 id="minmaxscaler">MinMaxScaler</h2>
+<p><code>from sklearn.preprocessing import MinMaxScaler</code> <br />
+<code>data = [[-1, 2], [-0.5, 6], [0, 10], [1, 18]]</code> <br />
+<code>scaler = MinMaxScaler()</code> <br />
+<code>print(scaler.fit(data))</code> <br />
+<code>MinMaxScaler()</code> <br />
+<code>print(scaler.data_max_)</code> <br />
+[ 1. 18.] <br />
+<code>print(scaler.transform(data))</code> <br />
+[[0.   0.  ]
+ [0.25 0.25]
+ [0.5  0.5 ]
+ [1.   1.  ]] <br />
+<code>print(scaler.transform([[2, 2]]))</code> <br />
+[[1.5 0. ]]</p>
+<h2 id="maxabsscaler">MaxAbsScaler</h2>
+<p><code>from sklearn.preprocessing import MaxAbsScaler</code> <br />
+<code>X = [[ 1., -1.,  2.],</code> <br />
+<code>[ 2.,  0.,  0.],</code> <br />
+<code>[ 0.,  1., -1.]]</code> <br />
+<code>transformer = MaxAbsScaler().fit(X)</code> <br />
+<code>transformer</code> <br />
+<code>MaxAbsScaler()</code> <br />
+<code>transformer.transform(X)</code> <br />
+output:
+array([[ 0.5, -1. ,  1. ],
+       [ 1. ,  0. ,  0. ],
+       [ 0. ,  1. , -0.5]])</p>
+<h2 id="robustscaler">RobustScaler</h2></div>
             </div>
         </div>
 
