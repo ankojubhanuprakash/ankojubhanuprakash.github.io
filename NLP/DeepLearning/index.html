@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://ankojubhanuprakash.github.io/NLP/Encode_Text_Data/">
+        <link rel="canonical" href="https://ankojubhanuprakash.github.io/NLP/DeepLearning/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Encode Text Data - Docs</title>
+        <title>Introduction - Docs</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -41,11 +41,11 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../DeepLearning/" class="dropdown-item">Introduction</a>
+    <a href="./" class="dropdown-item active">Introduction</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">Encode Text Data</a>
+    <a href="../Encode_Text_Data/" class="dropdown-item">Encode Text Data</a>
 </li>
                                 </ul>
                             </li>
@@ -67,12 +67,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../DeepLearning/" class="nav-link">
+                                <a rel="prev" href="../.." class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../Pre-Processing/Scaler/" class="nav-link">
+                                <a rel="next" href="../Encode_Text_Data/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -94,13 +94,25 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#encode-text-data" class="nav-link">Encode Text Data</a>
+            <li class="nav-item" data-level="1"><a href="#introduction" class="nav-link">Introduction</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#bag-of-words" class="nav-link">Bag of Words</a>
+            <li class="nav-item" data-level="2"><a href="#rnn" class="nav-link">RNN</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#tf-idf" class="nav-link">TF-IDF</a>
+            <li class="nav-item" data-level="2"><a href="#lstm" class="nav-link">LSTM</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#gru" class="nav-link">GRU</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#time-series-problem" class="nav-link">Time Series problem</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#references" class="nav-link">References</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -111,49 +123,55 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="encode-text-data">Encode Text Data</h1>
-<h2 id="bag-of-words">Bag of Words</h2>
-<p>Bag of words is method to represent raw text data in a strucutred format to a machine learning model. 
-Bag of words method constructs Vocabulary from the given corpus, and represents the text data as a vecotor of size of 
-the constructed vocabulary, with a number indicating the count of occurence of a word, that appeared in the sentecne.</p>
-<p>Example - 
-1. "John likes to watch movies. Mary likes movies too."
-2. "Mary also likes to watch football games."</p>
-<p>Vocabulary - 
-"John","likes","to","watch","movies","Mary", "too", "also","football","games"</p>
-<p>Representation - </p>
+<h1 id="introduction">Introduction</h1>
+<p>Natural Language processing applications do not follow the ssumption of independently and identically distributed (i.i.d.).  For example, the words in sentence are arranged in a meaningful way. If we disturb the order the meaning changes, Why? each word is dependent on the previous word. So we need a different architecture that captures temporal structure in sentence. The same is case with the time series data, where each data point is also a function of its previous satapoint. we shall look at various instances architecture like RNN(Recuurent neural network), LSTM(Long Short Term Memory) and GRU (Gated recurrent Unit)  that captures temporal context for a time series problem.</p>
+<h2 id="rnn">RNN</h2>
+<p>Like Convolutional Neural Networks share parameters across space, RNNs share parameters over time. The following example predicting next character based on previous character is demonstrated in below images.  <br />
+<img alt="" src="../RNN_A.JPG" /> <img alt="" src="../RNN_B.JPG" />  <img alt="" src="../RNN_1.JPG" /><br />
+So for every input <script type="math/tex">x_t</script> we are calculating context <script type="math/tex">h_t</script> and output computed based on <script type="math/tex">h_t</script> and <script type="math/tex">h_t-1</script>, where <script type="math/tex">h_t-1</script> is computed from previous observatopn <script type="math/tex">x_t-1</script>.  So variable h holds the context of the sequence. An RNN function is implemented as   <br />
+<script type="math/tex">{h_t=f(x_t,h_t-1)}</script>
+<br />
+<script type="math/tex">h_t= \phi(Ux + Vh_t-1 + b_h)</script>
+<br />
+<script type="math/tex">\hat{y}= g(Wh_t + b_y)</script> 
+Where U,V and W are the weight matrices to compute conetxt variable <script type="math/tex">h</script> and output <script type="math/tex">y</script> .  </p>
+<h3 id="pytorch-rnn-cell">Pytorch RNN cell</h3>
+<blockquote>
+<p><strong>Parameters</strong> - 
+* <strong>input_size</strong> – The number of expected features in the input x.
+* <strong>hidden_size</strong> – The number of features in the hidden state h.
+* <strong>num_layers</strong> – Number of recurrent layers. E.g., setting num_layers=2 would mean stacking two RNNs together to form a stacked RNN, with the second RNN taking in outputs of the first RNN and computing the final results. Default: 1   </p>
+<p><strong>Inputs</strong>: input, h_0
+* <strong>input</strong>: tensor of shape (L, N, <script type="math/tex">H_{in}</script>) when batch_first=False or (N, L, <script type="math/tex">H_{in}</script>) when batch_first=True containing the features of the input sequence. 
+* <strong>h_0</strong>: tensor of shape <script type="math/tex">(D * \text{num\_layers}, N, H_{out})</script> containing the initial hidden state for each element in the batch. Defaults to zeros if not provided.
+Where <script type="math/tex; mode=display">N= batch size \\ L= sequence length \\ D= 2\ if\ bidirectional\ =\ True\ otherwise\ 1 \\ H_{in} = \text{input\_size} \\ H_{out} = \text{hidden\_size} </script>
+​</p>
+<p><strong>Outputs</strong>: output, h_n
+* <strong>output</strong>: tensor of shape (L, N, D<em><script type="math/tex">H_{out}</script>) when batch_first=False or (N, L, <script type="math/tex">D*H_{out}</script>) when batch_first=True containing the output features (h_t) from the last layer of the RNN, for each t. <br />
+</em> <strong>h_n:</strong> tensor of shape <script type="math/tex">(D * \text{num\_layers}, N, H_{out})</script> containing the final hidden state for each element in the batch.</p>
+<p><code>import torch</code>  <br />
+<code>from torch import nn</code> <br />
+<code>rnn = nn.RNN(3,4)</code>      <br />
+<code>print(torch.randn(3,5))</code> <br />
+<code>input=torch.randn(5,2,3)</code> <br />
+<code>print(input)</code> <br />
+<code>output,final_hidden=rnn(input)</code> <br />
+<code>print(output.shape,final_hidden.shape)</code> <br />
+<code># input is (5,2,3)</code> <br />
+<code># rnn cell is nn.RNN(3,4)</code><br />
+<code># output is (5,2,4) &amp; final hidden activation is (1,2,4)</code>
+<a href="https://github.com/ankojubhanuprakash/WorkSpace/blob/main/RNN.ipynb"><img alt="RNN_output" src="../Rnn_output.JPG" /></a></p>
+</blockquote>
+<h3 id="back-propogation-through-time">Back Propogation through time</h3>
+<h2 id="lstm">LSTM</h2>
+<h2 id="gru">GRU</h2>
+<h2 id="time-series-problem">Time Series problem</h2>
+<h2 id="references">References</h2>
 <ol>
-<li>"John likes to watch movies. Mary likes movies too." is represented as [1, 2, 1, 1, 2, 1, 1, 0, 0, 0]</li>
-<li>"Mary also likes to watch football games." is represented as [0, 1, 1, 1, 0, 1, 0, 1, 1, 1]</li>
-</ol>
-<p>Limitation - 
-1. As the vocabulary size increases, the lenght of vecotr increases, leading to increase in computational cost.
-2. Context of the sentence is not captured, by ignoreing the word order</p>
-<p>Implementation - </p>
-<h2 id="tf-idf">TF-IDF</h2>
-<p>In bag of Words, we have seen that elements in the vecotr represents the number of times the word appeared in the sentence.
-Instead of count, TF-IDF is alternative way to construct vectors that yields better results.</p>
-<p>"A problem with scoring word frequency is that highly frequent words start to dominate in the document (e.g. larger score),
-but may not contain as much “informational content” to the model as rarer but perhaps domain specific words."
-(https://machinelearningmastery.com/gentle-introduction-bag-words-model/)</p>
-<p>Definition - </p>
-<p>Term Frequency: is a scoring of the frequency of the word in the current document.
-<img alt="image" src="https://user-images.githubusercontent.com/40142772/140699303-b3169b23-e220-42b3-9124-0ae096dab76f.png" />
-where ft,d is the raw count of a term in a document, i.e., the number of times that term t occurs in document d. </p>
-<p>Inverse Document Frequency: is a scoring of how rare the word is across documents. <br />
-<img alt="image" src="https://user-images.githubusercontent.com/40142772/140699413-32896b0a-26b4-41b4-a468-5cc87a84ff90.png" /> <br />
-N: total number of documents in the corpus. 
-<script type="math/tex; mode=display">{\displaystyle N={|D|}}N = {|D|}
-{\displaystyle |\{d\in D:t\in d\}|} |\{d \in D: t \in d\}| : number of documents where the term {\displaystyle t}t appears
-(i.e., {\displaystyle \mathrm {tf} (t,d)\neq 0} \mathrm{tf}(t,d) \neq 0). If the term is not in the corpus, this will lead to a division-by-zero.
-It is therefore common to adjust the denominator to {\displaystyle 1+|\{d\in D:t\in d\}|}1 + |\{d \in D: t \in d\}|.</script>
-</p>
-<p>Then tf–idf is calculated as
-<img alt="image" src="https://user-images.githubusercontent.com/40142772/140699512-c34fb166-1bd4-47bc-9d4c-949596194216.png" /></p>
-<p>Example - </p>
-<p>References - 
- 1. https://en.wikipedia.org/wiki/Bag-of-words_model
- 2. https://machinelearningmastery.com/gentle-introduction-bag-words-model/</p></div>
+<li>https://d2l.ai/chapter_recurrent-neural-networks/index.html</li>
+<li>https://deeplearning.neuromatch.io/tutorials/W2D3_ModernRecurrentNeuralNetworks/student/W2D3_Tutorial2.html</li>
+<li>https://pytorch.org/docs/stable/generated/torch.nn.RNN.html</li>
+</ol></div>
             </div>
         </div>
 
