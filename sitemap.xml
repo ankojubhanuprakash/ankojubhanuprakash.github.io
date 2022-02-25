@@ -2,77 +2,67 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ankojubhanuprakash.github.io/</loc>
-         <lastmod>2022-02-25</lastmod>
+         <lastmod>2022-02-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ankojubhanuprakash.github.io/Finance/Definitions/</loc>
-         <lastmod>2022-02-25</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://ankojubhanuprakash.github.io/Finance/values/</loc>
-         <lastmod>2022-02-25</lastmod>
+         <lastmod>2022-02-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ankojubhanuprakash.github.io/Machine%20Learning/Pre-Processing/</loc>
-         <lastmod>2022-02-25</lastmod>
+         <lastmod>2022-02-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ankojubhanuprakash.github.io/Machine%20Learning/Validation/</loc>
-         <lastmod>2022-02-25</lastmod>
+         <lastmod>2022-02-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ankojubhanuprakash.github.io/Mlops/Definitions/</loc>
-         <lastmod>2022-02-25</lastmod>
+         <lastmod>2022-02-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ankojubhanuprakash.github.io/Mlops/Error%20Analysis/</loc>
-         <lastmod>2022-02-25</lastmod>
+         <lastmod>2022-02-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ankojubhanuprakash.github.io/Mlops/Monitor_ml_model/</loc>
-         <lastmod>2022-02-25</lastmod>
+         <lastmod>2022-02-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ankojubhanuprakash.github.io/Mlops/Tools/</loc>
-         <lastmod>2022-02-25</lastmod>
+         <lastmod>2022-02-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ankojubhanuprakash.github.io/NLP/DeepLearning/</loc>
-         <lastmod>2022-02-25</lastmod>
+         <lastmod>2022-02-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ankojubhanuprakash.github.io/NLP/Encode_Text_Data/</loc>
-         <lastmod>2022-02-25</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://ankojubhanuprakash.github.io/Python/BinarySearcTree/</loc>
-         <lastmod>2022-02-25</lastmod>
+         <lastmod>2022-02-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ankojubhanuprakash.github.io/Python/Linear%20DataStructures%20basics/</loc>
-         <lastmod>2022-02-25</lastmod>
+         <lastmod>2022-02-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ankojubhanuprakash.github.io/Python/Linear%20DataStructures/</loc>
-         <lastmod>2022-02-25</lastmod>
+         <lastmod>2022-02-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ankojubhanuprakash.github.io/Python/Linked_list/</loc>
-         <lastmod>2022-02-25</lastmod>
+         <lastmod>2022-02-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
