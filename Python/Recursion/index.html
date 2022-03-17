@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://ankojubhanuprakash.github.io/Machine%20Learning/Validation/">
+        <link rel="canonical" href="https://ankojubhanuprakash.github.io/Python/Recursion/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Validation - Docs</title>
+        <title>Recursion program - Docs</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -62,24 +62,24 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Machine Learning <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../Classification/" class="dropdown-item">Classification</a>
+    <a href="../../Machine%20Learning/Classification/" class="dropdown-item">Classification</a>
 </li>
                                     
 <li>
-    <a href="../DecisionTree/" class="dropdown-item">Decision Tree</a>
+    <a href="../../Machine%20Learning/DecisionTree/" class="dropdown-item">Decision Tree</a>
 </li>
                                     
 <li>
-    <a href="../Pre-Processing/" class="dropdown-item">Scaling</a>
+    <a href="../../Machine%20Learning/Pre-Processing/" class="dropdown-item">Scaling</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">Validation</a>
+    <a href="../../Machine%20Learning/Validation/" class="dropdown-item">Validation</a>
 </li>
                                 </ul>
                             </li>
@@ -117,32 +117,32 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Python <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../Python/BinarySearcTree/" class="dropdown-item">BinarySearcTree</a>
+    <a href="../BinarySearcTree/" class="dropdown-item">BinarySearcTree</a>
 </li>
                                     
 <li>
-    <a href="../../Python/Bitwise/" class="dropdown-item">Bitwise</a>
+    <a href="../Bitwise/" class="dropdown-item">Bitwise</a>
 </li>
                                     
 <li>
-    <a href="../../Python/Linear%20DataStructures%20basics/" class="dropdown-item">Linear Data Structures</a>
+    <a href="../Linear%20DataStructures%20basics/" class="dropdown-item">Linear Data Structures</a>
 </li>
                                     
 <li>
-    <a href="../../Python/Linear%20DataStructures/" class="dropdown-item">Liner Data Structures</a>
+    <a href="../Linear%20DataStructures/" class="dropdown-item">Liner Data Structures</a>
 </li>
                                     
 <li>
-    <a href="../../Python/Linked_list/" class="dropdown-item">Linked List</a>
+    <a href="../Linked_list/" class="dropdown-item">Linked List</a>
 </li>
                                     
 <li>
-    <a href="../../Python/Recursion/" class="dropdown-item">Recursion program</a>
+    <a href="./" class="dropdown-item active">Recursion program</a>
 </li>
                                 </ul>
                             </li>
@@ -164,12 +164,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../Pre-Processing/" class="nav-link">
+                                <a rel="prev" href="../Linked_list/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../Mlops/Definitions/" class="nav-link">
+                                <a rel="next" href="../../Tensorflow/BatchProcessing/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -190,19 +190,64 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#recursion-program" class="nav-link">Recursion program</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#roman-to-integer" class="nav-link">Roman to integer</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#interleavings" class="nav-link">InterLeavings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#sum-of-subsets-of-array" class="nav-link">Sum of subsets of array</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#open-bracket-and-cloing-bracket" class="nav-link">open bracket and cloing bracket</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#tic-tac-toe" class="nav-link">Tic Tac toe</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<ol>
-<li>Test train Split
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(df['feature'],df['Class'] , test_size=0.33, random_state=42)</li>
-<li>K Fold Cross validation</li>
-<li>Cros val score</li>
-<li>Cros val pred</li>
-</ol></div>
+<h1 id="recursion-program">Recursion program</h1>
+<h2 id="roman-to-integer">Roman to integer</h2>
+<pre><code class="language-python">def extract(s,ans,current,lookup):
+    if s=='':
+        #print(ans)
+        return ans
+
+    a=lookup[current]
+    b=lookup[s[-1]]
+    if a&lt;=b:
+        return extract(s[:-1],ans+b,s[-1],lookup)
+    else:
+        return extract(s[:-1],ans-b,s[-1],lookup)
+
+class Solution:
+    #def 
+    def romanToInt(self, s: str) -&gt; int:
+        #take_two=True
+        #sum=0
+        lookup={'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+        sum=extract(s[:-1],lookup[s[-1]],s[-1],lookup)
+        #print(sum)
+        return sum
+</code></pre>
+<h2 id="interleavings">InterLeavings</h2>
+<h2 id="sum-of-subsets-of-array">Sum of subsets of array</h2>
+<h2 id="open-bracket-and-cloing-bracket">open bracket and cloing bracket</h2>
+<h2 id="tic-tac-toe">Tic Tac toe</h2></div>
             </div>
         </div>
 

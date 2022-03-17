@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://ankojubhanuprakash.github.io/Machine%20Learning/Validation/">
+        <link rel="canonical" href="https://ankojubhanuprakash.github.io/Python/BinarySearcTree/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Validation - Docs</title>
+        <title>BinarySearcTree - Docs</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -62,24 +62,24 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Machine Learning <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../Classification/" class="dropdown-item">Classification</a>
+    <a href="../../Machine%20Learning/Classification/" class="dropdown-item">Classification</a>
 </li>
                                     
 <li>
-    <a href="../DecisionTree/" class="dropdown-item">Decision Tree</a>
+    <a href="../../Machine%20Learning/DecisionTree/" class="dropdown-item">Decision Tree</a>
 </li>
                                     
 <li>
-    <a href="../Pre-Processing/" class="dropdown-item">Scaling</a>
+    <a href="../../Machine%20Learning/Pre-Processing/" class="dropdown-item">Scaling</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">Validation</a>
+    <a href="../../Machine%20Learning/Validation/" class="dropdown-item">Validation</a>
 </li>
                                 </ul>
                             </li>
@@ -117,32 +117,32 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Python <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../Python/BinarySearcTree/" class="dropdown-item">BinarySearcTree</a>
+    <a href="./" class="dropdown-item active">BinarySearcTree</a>
 </li>
                                     
 <li>
-    <a href="../../Python/Bitwise/" class="dropdown-item">Bitwise</a>
+    <a href="../Bitwise/" class="dropdown-item">Bitwise</a>
 </li>
                                     
 <li>
-    <a href="../../Python/Linear%20DataStructures%20basics/" class="dropdown-item">Linear Data Structures</a>
+    <a href="../Linear%20DataStructures%20basics/" class="dropdown-item">Linear Data Structures</a>
 </li>
                                     
 <li>
-    <a href="../../Python/Linear%20DataStructures/" class="dropdown-item">Liner Data Structures</a>
+    <a href="../Linear%20DataStructures/" class="dropdown-item">Liner Data Structures</a>
 </li>
                                     
 <li>
-    <a href="../../Python/Linked_list/" class="dropdown-item">Linked List</a>
+    <a href="../Linked_list/" class="dropdown-item">Linked List</a>
 </li>
                                     
 <li>
-    <a href="../../Python/Recursion/" class="dropdown-item">Recursion program</a>
+    <a href="../Recursion/" class="dropdown-item">Recursion program</a>
 </li>
                                 </ul>
                             </li>
@@ -164,12 +164,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../Pre-Processing/" class="nav-link">
+                                <a rel="prev" href="../../NLP/Encode_Text_Data/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../Mlops/Definitions/" class="nav-link">
+                                <a rel="next" href="../Bitwise/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -195,14 +195,123 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<ol>
-<li>Test train Split
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(df['feature'],df['Class'] , test_size=0.33, random_state=42)</li>
-<li>K Fold Cross validation</li>
-<li>Cros val score</li>
-<li>Cros val pred</li>
-</ol></div>
+<pre><code class="language-python">class BinarySearchTree():
+    def __init__(self,data):
+      ##############################################
+      #every element itself is binary tree,        #  
+      # where it has atmost two elements           # 
+      # and left element is less than right element#
+      ############################################## 
+      self.data= data
+      self.left=None
+      self.right= None
+
+    def add_child(self,data):
+      ############################
+      #add element to left child, check if passed value is 
+      #     lesser than current value
+      # else add it to right child
+      ############################
+      if data &lt; self.data:
+        if self.left:
+          self.left.add_child(data)
+        else:
+          self.left= BinarySearchTree(data)
+      elif data &gt; self.data:
+        if self.right:
+          self.right.add_child(data)
+        else:
+          self.right=BinarySearchTree(data)  
+
+      else:      
+        print(data,'value alreay exists' ) 
+    def inorder(self):
+      #########
+      # print left, root , right
+      # this will print in ascending order
+      #########  
+      elements= []
+      if self.left:
+        elements+=self.left.inorder()
+      elements.append(self.data)
+      if self.right:
+        elements+=self.right.inorder()
+
+      return elements    
+    def preorder(self):
+      elements= []
+      elements.append(self.data)
+      if self.left:
+        elements+=self.left.preorder()
+      #elements.append(self.data)
+      if self.right:
+        elements+=self.right.preorder()
+
+      return elements      
+    def postorder(self):
+      elements= []
+      #elements.append(self.data)
+      if self.left:
+        elements+=self.left.postorder()
+      #elements.append(self.data)
+      if self.right:
+        elements+=self.right.postorder()
+      elements.append(self.data)
+      return elements   
+    def min(self):
+      if self.left:
+
+        return self.left.min()
+      else: 
+        return self.data  
+    def max(self):
+      if self.right:
+
+        return self.right.max()
+      else: 
+        return self.data     
+    def search(self,val):
+      if val== self.data:
+        return True
+      elif val&lt;self.data:
+        if self.left:
+          return self.left.search(val)  
+        else:
+          return False  
+      elif val&gt; self.data:
+        if self.right:
+          return self.right.search(val)
+        else:
+          return False  
+      else:
+        return False
+    def sum(self):
+      ans=self.data
+      if self.left:
+        ans=ans+self.left.sum()
+      if self.right:
+        ans=ans+self.right.sum()
+      return ans       
+    def delete(self,val):
+      if self.data &gt; val :
+        if self.left:
+          self.left=self.left.delete(val)
+      elif val &gt; self.data :
+          if self.right:
+            self.right=self.right.delete(val) 
+      else:
+        if self.left == None and self.right==None:
+          return None
+        if self.right==None:
+          return self.left
+        if self.left == None:
+            return self.right
+        rmin=self.right.min()
+        self.data=rmin
+        self.right = self.right.delete(rmin)
+      return self  
+</code></pre>
+<p>!(Notebook)[https://github.com/ankojubhanuprakash/DS_Algo_python/blob/main/BinarySearchTree.ipynb]</p></div>
             </div>
         </div>
 
